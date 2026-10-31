@@ -2,11 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <!-- Viewport agar pas & tidak bug di HP Android -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Untuk Kamu ❤️</title>
   <style>
-    /* RESET & STYLES BASIC */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -24,7 +22,6 @@
       padding: 20px;
     }
 
-    /* CARD CONTAINER */
     .card {
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(10px);
@@ -36,7 +33,6 @@
       text-align: center;
     }
 
-    /* SLIDE MANAGEMENT */
     .slide {
       display: none;
       animation: fadeIn 0.4s ease-in-out forwards;
@@ -51,7 +47,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* TYPOGRAPHY */
     h2 {
       color: #d63384;
       font-size: 1.4rem;
@@ -65,7 +60,6 @@
       margin-bottom: 18px;
     }
 
-    /* SLIDE 2: DAFTAR ALASAN SPESIAL (PENGGANTI FOTO) */
     .reasons-list {
       text-align: left;
       background: #fff;
@@ -89,11 +83,6 @@
       margin-bottom: 0;
     }
 
-    .reason-icon {
-      font-size: 1.1rem;
-    }
-
-    /* BUTTON STYLES */
     .btn-container {
       display: flex;
       justify-content: center;
@@ -121,7 +110,6 @@
       transform: scale(0.96);
     }
 
-    /* Tombol Tidak dibuat ramah & jelas bisa diklik */
     button.btn-secondary {
       background: linear-gradient(to right, #8e9eab, #eef2f3);
       color: #333;
@@ -135,23 +123,42 @@
       width: 100%;
     }
 
-    /* RESULT AREA */
-    .result-box {
-      background: #f8f9fa;
-      border: 1px dashed #d63384;
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 0.9rem;
-      color: #333;
+    /* KOTAK INPUT OPSIONAL */
+    .optional-box {
+      margin-top: 15px;
       margin-bottom: 15px;
-      word-break: break-word;
+      text-align: left;
+    }
+
+    .optional-box label {
+      display: block;
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    textarea {
+      width: 100%;
+      height: 70px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      border-color: #d63384;
     }
 
     .toast {
       color: #28a745;
       font-size: 0.85rem;
       font-weight: bold;
-      margin-top: 8px;
+      margin-top: 10px;
       display: none;
     }
   </style>
@@ -164,32 +171,29 @@
     <div class="slide active" id="slide1">
       <h2>Hai Kamu... ❤️</h2>
       <p>
-        Terima kasih ya sudah meluangkan waktu untuk membuka ini. Ada sesuatu hal jujur yang ingin aku sampaikan padamu dari hati.
+        Terima kasih ya sudah meluangkan waktu untuk membuka ini. Ada sesuatu hal tulus yang ingin aku sampaikan padamu dari hati.
       </p>
       <div class="btn-container">
         <button onclick="nextSlide(2)" style="max-width: 100%; width: 100%;">Lanjut 👉</button>
       </div>
     </div>
 
-    <!-- SLIDE 2: ALASAN KENAPA KAMU SPESIAL (PENGGANTI FOTO) -->
+    <!-- SLIDE 2: ALASAN KENAPA SPESIAL -->
     <div class="slide" id="slide2">
       <h2>Kenapa Kamu Spesial? ✨</h2>
       
       <div class="reasons-list">
         <div class="reason-item">
-          <span class="reason-icon">🌸</span>
-          <span> Hai gia, aku tau kita belum lama kenal dan masih banyak yang belum ku tau darimu, 
-        begitu pula denganmu yang mmugkin belum tau banyak tentangku.</span>
+          <span>🌸 Hai gia, aku tau kita belum lama kenal dan masih banyak yang belum ku tau darimu, 
+        begitu pula denganmu yang mmugkin belum tau banyak tentangku </span>
         </div>
         <div class="reason-item">
-          <span class="reason-icon">🕊️</span>
-          <span>tapi dari awal kita kenal
+          <span>🕊️ tapi dari awal kita kenal
         aku merasa sudah sangat nyaman bersamamu, tawa bareng, main bareng bahkan sampe gibah wkwkwk,.</span>
         </div>
         <div class="reason-item">
-          <span class="reason-icon">✨</span>
-          <span> dan itu membuatku menyukaimu,
-            ya tapi itu juga tergantung kamu, apapun jawabanmu nanti aku tidak akan menyesal.</span>
+          <span>✨ dan itu membuatku menyukaimu,
+            ya tapi itu juga tergantung kamu, apapun jawabanmu nanti aku tidak akan menyesal..</span>
         </div>
       </div>
 
@@ -201,7 +205,7 @@
     <!-- SLIDE 3: PERTANYAAN UTAMA -->
     <div class="slide" id="slide3">
       <h2>Pertanyaan Dari Hati ❤️</h2>
-      <p>Maukah kamu menjadi bagian dari hariku dan berjalan bersamaku mulai hari ini?</p>
+      <p>jadi maukah kamu menjadi pacarku?</p>
 
       <div class="btn-container">
         <button onclick="pilihJawaban('mau')">Mau ❤️</button>
@@ -209,13 +213,16 @@
       </div>
     </div>
 
-    <!-- SLIDE 4: HASIL (JIKA MAU ATAU TIDAK) -->
+    <!-- SLIDE 4: HASIL KAN JAWABAN & KOLOM CATATAN OPSIONAL -->
     <div class="slide" id="slideFinal">
       <h2 id="finalTitle">...</h2>
       <p id="finalMessage">...</p>
 
-      <!-- Teks Jawaban yang Siap Disalin -->
-      <div class="result-box" id="textToCopy"></div>
+      <!-- Kolom Catatan Opsional -->
+      <div class="optional-box">
+        <label for="customNote">Pesan/kesan tambahan (opsional):</label>
+        <textarea id="customNote" placeholder="Tulis pesan tambahan di sini jika ada..."></textarea>
+      </div>
 
       <div class="btn-container" style="flex-direction: column;">
         <button class="btn-copy" onclick="copyText()">📋 Salin Jawaban</button>
@@ -227,7 +234,6 @@
   </div>
 
   <script>
-    // Fungsi Pindah Slide
     function nextSlide(slideNumber) {
       document.querySelectorAll('.slide').forEach(slide => {
         slide.classList.remove('active');
@@ -235,51 +241,54 @@
       document.getElementById('slide' + slideNumber).classList.add('active');
     }
 
-    let ucapanDisalin = "";
+    let jawabanUtama = "";
 
-    // Fungsi Mengatur Jawaban (Mau / Tidak)
     function pilihJawaban(jawaban) {
       const finalTitle = document.getElementById('finalTitle');
       const finalMessage = document.getElementById('finalMessage');
-      const textToCopy = document.getElementById('textToCopy');
 
       if (jawaban === 'mau') {
         finalTitle.innerText = "Makasih Banyak Ya! 🎉💖";
-        finalMessage.innerText = "Aku seneng banget! Janji bakal berusaha buat bikin kamu bahagia selalu. Teks di bawah bisa kamu salin buat dikirim ke aku ya:";
-        ucapanDisalin = "Hai! Aku udah buka websitenya, dan jawabanku adalah: MAU! ❤️🥰";
+        finalMessage.innerText = "Aku seneng banget! Kamu bisa tulis pesan tambahan di bawah, lalu klik Salin Jawaban untuk dikirim ke aku ya:";
+        jawabanUtama = "Hai! Aku udah buka websitenya, dan jawabanku adalah: MAU! ❤️🥰";
       } else {
         finalTitle.innerText = "Terima Kasih Ya 😊";
-        finalMessage.innerText = "Gak apa-apa kok, makasih banyak udah jujur dan sudah mau baca sampai akhir. Kita tetap bisa berteman baik! Teks di bawah bisa kamu salin:";
-        ucapanDisalin = "Hai! Aku udah buka websitenya. Makasih ya atas perasaannya, tapi untuk saat ini jawabanku belum bisa (tidak). Makasih udah mengerti! 🙏";
+        finalMessage.innerText = "Gak apa-apa kok, makasih banyak udah jujur. Kamu bisa tulis pesan tambahan di bawah jika ada, lalu klik Salin Jawaban:";
+        jawabanUtama = "Hai! Aku udah buka websitenya. Makasih ya atas perasaannya, tapi untuk saat ini jawabanku belum bisa (tidak). Makasih udah mengerti! 🙏";
       }
 
-      textToCopy.innerText = ucapanDisalin;
       nextSlide('Final');
     }
 
-    // Fungsi Salin Teks ke Clipboard
     function copyText() {
-      navigator.clipboard.writeText(ucapanDisalin).then(() => {
-        const toast = document.getElementById('toastMsg');
-        toast.style.display = 'block';
-        setTimeout(() => {
-          toast.style.display = 'none';
-        }, 3000);
+      const customNote = document.getElementById('customNote').value.trim();
+      let teksAkhir = jawabanUtama;
+
+      // Jika ada isi di kolom opsional, tambahkan ke teks yang disalin
+      if (customNote !== "") {
+        teksAkhir += "\n\nPesan tambahan: " + customNote;
+      }
+
+      navigator.clipboard.writeText(teksAkhir).then(() => {
+        tampilkanToast();
       }).catch(err => {
-        // Fallback jika browser lama tidak mendukung Clipboard API
+        // Fallback untuk browser lama
         const dummy = document.createElement("textarea");
         document.body.appendChild(dummy);
-        dummy.value = ucapanDisalin;
+        dummy.value = teksAkhir;
         dummy.select();
         document.execCommand("copy");
         document.body.removeChild(dummy);
-
-        const toast = document.getElementById('toastMsg');
-        toast.style.display = 'block';
-        setTimeout(() => {
-          toast.style.display = 'none';
-        }, 3000);
+        tampilkanToast();
       });
+    }
+
+    function tampilkanToast() {
+      const toast = document.getElementById('toastMsg');
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
     }
   </script>
 </body>
